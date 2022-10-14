@@ -1,0 +1,242 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial=1.0">
+    <title>MOOODAY.LOGIN</title>
+
+    <!-- CSS部分 -->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            outline: none;
+            border: none;
+        }
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .shell {
+            width: 500px;
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            perspective: 1000px;
+        }
+        .top {
+            width: 400px;
+            height: 50px;
+            display: flex;
+            cursor: pointer;
+            justify-content: space-evenly;
+            align-items: center;
+            position: relative;
+            bottom: 10px;
+        }
+        .off, .on {
+            color: #000;
+            transition: .5s; /* 浅猜是要用的时间, enen */
+            font: 300 30px ''; /* weight size family, 但这个family里面根本不写字体是算什么意思？用默认字体么，那为什么又要写一下'', 直接不写不行么 */
+        }
+        .on {
+            opacity: .5;
+        } /* so, 一样的东西可以跟别的class写一块, 自己可以再写一个 */
+        .button {
+            width: 70px;
+            height: 30px;
+            background-color: rgb(254, 242, 202);
+            border-radius: 20px;
+            position: relative;
+        }
+        .ball {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: rgb(46, 45, 56);
+            border-radius: 50%;
+            transition: .5s;
+            box-shadow: 0 0 10px #61667F;
+            left: 0; /* 左边贴住左边,但是是贴住哪里的左边呢?? */
+            transform: translate(-1px); /* 做一些其实我看起来没有必要的微调了kk */
+        }
+        .bottom {
+            width: 500px;
+            height: 600px;
+            background-image: url(./PIC/bg-20.png); /* 只要写相对路径就可以了——本文件所在目录的下一个目录(PIC)中的文件,且注意因为CSS在style中所以前面要两个点,好像一个点或者不加点也可以诶 */
+            background-size: 100% 100%;
+            border-radius: 10px;
+            transform-style: preserve-3d;
+            /* 使元素呈现3D效果 */
+            position: relative;
+            transition: .7s;
+            padding-top: px;
+        }
+        .bottom>div {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+        /* 牛逼o,规定bottom下面具体某个层的样式 */
+        .bottom>div h2{
+            color: rgba(15, 15, 15, 0.75);
+            font-size: 50px;
+            font-family: 'Nanum Pen Script', 'Senty Cream Puff Âµ', 'Lao MN', 'Dry Brush';
+            font-weight: 50;
+            text-shadow: 5px 5px 5px rgba(255, 239, 187, .4);
+        }
+        .signUp>h2 {
+            position: relative;
+            top: 5px;
+        }
+        .bottom>div input {
+            width: 300px;
+            height: 40px;
+            border-radius: 5px;
+            padding: 0 10px; /* 这是placeholder和白框框的距离 */
+            background-color: rgba(254, 242, 202, .4);
+            color: #000;
+            font-size: 20px;
+            font-family: '';
+            font-weight: 200;
+        }
+        .bottom>div input:hover {
+            background-color: rgba(254, 242, 202, .6);
+        }
+        .bottom>div button {
+            width: 100px;
+            height: 40px;
+            color: rgba(23,23,23,.8);
+            font-size: 20px;
+            font-family: '';
+            font-weight: 350;
+            background-color: rgb(254, 242, 202);
+            border-radius: 4px;
+            transition: .3s;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .bottom>div button:hover {
+            box-shadow: 0 0 10px rgb(255, 239, 187);
+            background-color: rgb(255, 239, 187);
+            color: color: rgba(23,23,23,1);;
+        }
+        .signIn {
+            transform: translateZ(70px);
+        }
+        .signUp {
+            position: absolute;
+            top: 0;
+            transform: translateZ(-70px) rotateY(180deg);
+        }
+        .UpUp {
+            width: 300px;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .UpSub {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 300px;
+        }
+        .signUp>div ul {
+            color: #61667F;
+            opacity: .75;
+            position: relative;
+            left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HTML部分 -->
+    <div class="shell">
+
+        <div class="top">
+            <span class="off">SIGN IN</span>
+            <div class="button"> <!--写了一个没有文字的（即：纯色图片）元素-->
+                <div class="ball"></div><!--这个也是，不过调了不一样的形状-->
+            </div>
+            <span class="on">SIGN UP</span>
+        </div>
+
+        <div class="bottom">
+            <div class="signIn">
+                <h2>Sign in</h2>
+                <input type="text" placeholder="Username" class="InUsername">
+                <input type="password" placeholder="Password" class="InPassword">
+                <button class="signInButton">GO</button>
+            </div>
+            <div class="signUp">
+                <h2>Sign up</h2>
+                <div class="UpUp">
+                    <div class="UpSub">
+                        <input type="text" placeholder="Username" class="UpUsername">
+                        <ul>
+                            <li>contains only characters</li>
+                        </ul>
+                    </div>
+                    <div class="UpSub">
+                        <input type="password" placeholder="Password" class="UpPassword1">
+                        <ul>
+                            <li>at least 6 characters</li>
+                            <li>no more than 16 characters</li>
+                            <li>must contains a special character</li>
+                        </ul>
+                    </div>
+                    
+                    <input type="password" placeholder="Confirm Password" class="UpPassword2">
+                </div>
+                <button class="signUpButton">GO</button>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- JS部分 -->
+    <script>
+        let button = document.querySelector('.button')
+        let ball = document.querySelector('.ball')
+        let bottom = document.querySelector('.bottom')
+        let off = document.querySelector('.off')
+        let on = document.querySelector('.on')
+        let InUsername = document.querySelector('.InUsername')
+        let UpUsername = document.querySelector('.UpUsername')
+        let index = 0
+        button.addEventListener('click', ()=> {
+            if(index==0) {
+                index = 1
+                ball.style.left = 61+'%'
+                on.style.opacity = 1
+                off.style.opacity = .5
+                bottom.style.transform = "rotateY(180deg)"
+            }else {
+                index = 0
+                ball.style.left = 0+'%'
+                on.style.opacity = .5
+                off.style.opacity = 1
+                bottom.style.transform = "rotateY(0)"
+            }
+        })
+
+        // InUsername.focus();
+        // if(InUsername)
+        
+        // signIpButton.addEventListener('click', ()=> {
+
+        // })
+    </script>
+</body>
+</html>

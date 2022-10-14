@@ -1,4 +1,4 @@
-# SigninSignup_JU
+# Signin Signup Page
 One page design for Sign in and Sign up.
 
 ## Contributor
